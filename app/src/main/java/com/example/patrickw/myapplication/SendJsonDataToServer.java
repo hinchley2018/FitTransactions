@@ -30,7 +30,7 @@ public  class SendJsonDataToServer extends AsyncTask<String,String,String> {
         BufferedReader bufferedReader = null;
         try {
             //create a url object
-            URL url = new URL("http://10.254.4.218/httppost.php");
+            URL url = new URL("http://api.reimaginebanking.com/accounts?key=54765c95182641144b2d2606ac0f2b42");
 
             //open a connection
             httpURLConnection = (HttpURLConnection) url.openConnection();
@@ -39,7 +39,7 @@ public  class SendJsonDataToServer extends AsyncTask<String,String,String> {
             httpURLConnection.setDoOutput(true);
 
             //set the connection type
-            httpURLConnection.setRequestMethod("POST");
+            httpURLConnection.setRequestMethod("GET");
 
             //set the headers
             httpURLConnection.setRequestProperty("Content-Type","application/json");
