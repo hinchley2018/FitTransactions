@@ -7,6 +7,8 @@ import android.net.Uri;
 import android.widget.Button;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.TableLayout;
+import android.widget.TableRow;
 import android.widget.Toast;
 import android.widget.TextView;
 import android.view.View.OnClickListener;
@@ -46,7 +48,7 @@ public class MainActivity extends Activity implements AsyncResponse{
         get_button = (Button) findViewById(R.id.Get_Button);
         get_button.setOnClickListener(onClickListener);
         tv = (TextView) findViewById(R.id.Output_View);
-
+        table1 = (TableLayout) findViewById(R.id.tableLayout1);
     }
 
     @Override
@@ -83,7 +85,29 @@ public class MainActivity extends Activity implements AsyncResponse{
                   for (int i = 0; i < jsonObject.length(); i++)
                   {
                       JSONObject purchase = (JSONObject) jsonObject.get(i);
-                      Toast.makeText(MainActivity.this,purchase.getString("description"),Toast.LENGTH_LONG).show();
+                      TableRow tr = new TableRow(getApplicationContext());
+
+                      //create textviews and set their text values
+                      TextView dateView = new TextView(getApplicationContext());
+                      dateView.setText(purchase.getString("purchase_date"));
+                      TextView desView=new TextView(getApplicationContext());
+                      desView.setText(purchase.getString("description"));
+                      TextView amountView=new TextView(getApplicationContext());
+                      amountView.setText(purchase.getString("amount"));
+
+                      TextView hrView = new TextView(getApplicationContext());
+                      dateView.setText("100");
+
+                      //add them to table
+                      tr.addView(dateView);
+                      tr.addView(desView);
+                      tr.addView(amountView);
+                      tr.addView(hrView);
+
+                      //add table row to table
+                      table1.addView(tr);
+
+                      //Toast.makeText(MainActivity.this,purchase.getString("description"),Toast.LENGTH_LONG).show();
                   }
 
                   //String purchase_date = jsonObject.getString("purchase_date");

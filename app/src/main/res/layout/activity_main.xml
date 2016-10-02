@@ -46,7 +46,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:text="Purchase Date"
-                    android:textSize="18dp" >
+                    android:textSize="12dp" >
                 </TextView>
                 <TextView
                     android:id="@+id/description"
@@ -54,7 +54,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:text="Description"
-                    android:textSize="18dp" >
+                    android:textSize="12dp">
                 </TextView>
                 <TextView
                     android:id="@+id/amount"
@@ -62,7 +62,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:text="Amount($)"
-                    android:textSize="18dp" >
+                    android:textSize="12dp" >
                 </TextView>
                 <TextView
                     android:id="@+id/heartbeat"
@@ -70,7 +70,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:text="Heart Rate(bpm)"
-                    android:textSize="18dp" >
+                    android:textSize="12dp" >
                 </TextView>
             </TableRow>
         </TableLayout>
