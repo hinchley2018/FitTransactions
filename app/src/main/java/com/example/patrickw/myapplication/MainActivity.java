@@ -59,4 +59,23 @@ public class MainActivity extends Activity {
       }
 
       };
+      public void send_data_to_server(String Recipe){
+
+        //create a JSONObject so I can post data...
+        JSONObject post_dict = new JSONObject();
+
+        //try to put the recipe in the jsonObject
+        try {
+            post_dict.put("recipe",Recipe);
+            //debug
+            Log.i("My JSONObject",post_dict.toString());
+            Toast.makeText(getApplication(),"My Json:"+post_dict.toString(),Toast.LENGTH_LONG).show();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        if (post_dict.length()>0){
+            new SendJsonDataToServer(this).execute(String.valueOf(post_dict));
+        }
+      }
 }
