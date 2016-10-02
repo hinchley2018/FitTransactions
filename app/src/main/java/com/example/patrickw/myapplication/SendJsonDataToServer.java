@@ -76,3 +76,25 @@ public class SendJsonDataToServer extends AsyncTask<String,Void,Void> {
     }
 
 }
+private String readStream(InputStream in) {
+        BufferedReader reader = null;
+        StringBuffer response = new StringBuffer();
+        try {
+            reader = new BufferedReader(new InputStreamReader(in));
+            String line = "";
+            while ((line = reader.readLine()) != null) {
+                response.append(line);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            if (reader != null) {
+                try {
+                    reader.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        return response.toString();
+    }
