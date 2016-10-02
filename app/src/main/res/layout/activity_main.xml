@@ -28,4 +28,9 @@
         android:id="@+id/Output_View"
 
         android:layout_below="@+id/Get_Button"/>
+
+    <TextView
+        android:layout_with="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/Heartbeat_Ouput">
 </RelativeLayout>

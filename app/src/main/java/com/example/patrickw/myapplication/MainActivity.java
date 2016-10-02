@@ -1,6 +1,8 @@
 package com.example.patrickw.myapplication;
 
 import android.app.Activity;
+import android.hardware.Sensor;
+import android.hardware.SensorManager;
 import android.net.Uri;
 import android.widget.Button;
 import android.os.Bundle;
@@ -9,6 +11,10 @@ import android.widget.Toast;
 import android.widget.TextView;
 import android.view.View.OnClickListener;
 import android.util.Log;
+import android.os.health.*;
+
+
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -24,7 +30,9 @@ public class MainActivity extends Activity implements AsyncResponse{
 
     Button get_button;
     TextView tv;
+    TextView hbo;
     String Display_Text;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +47,7 @@ public class MainActivity extends Activity implements AsyncResponse{
         get_button.setOnClickListener(onClickListener);
         tv = (TextView) findViewById(R.id.Output_View);
         tv.setText("helu");
+        hbo.setText("0");
         //Toast.makeText(this, "hello", Toast.LENGTH_LONG).show();
 
     }
@@ -60,6 +69,12 @@ public class MainActivity extends Activity implements AsyncResponse{
       public void onClick(final View v) {
           if (v == get_button){
               String result = "";
+
+              //Sensor heartbeat = (Sensor) SensorManager.getDefaultSensor(65562);
+              //Toast.heartbeat.getName();
+
+              hbo.append("\n");
+
               try {
                   result = send_data_to_server(result);
               } catch (ExecutionException e) {
@@ -69,8 +84,21 @@ public class MainActivity extends Activity implements AsyncResponse{
               }
               //Toast.makeText(MainActivity.this,result, Toast.LENGTH_LONG).show();
               tv.setText(result);
-              JSONObject jsonObject=new JSONObject(result);
-              String purchase_date = jsonObject.getString("purchase_date");
+
+              try {
+                  JSONArray jsonObject= null;
+                  jsonObject = new JSONArray(result);
+                  for (int i = 0; i < jsonObject.length(); i++)
+                  {
+                      JSONObject purchase = (JSONObject) jsonObject.get(i);
+                      Toast.makeText(MainActivity.this,purchase.getString("description"),Toast.LENGTH_LONG).show();
+                  }
+
+                  //String purchase_date = jsonObject.getString("purchase_date");
+                  //Toast.makeText(MainActivity.this,purchase_date, Toast.LENGTH_LONG).show();
+              } catch (JSONException e) {
+                  e.printStackTrace();
+              }
           }
       }
 
