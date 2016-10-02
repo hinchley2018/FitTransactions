@@ -8,7 +8,7 @@ import android.view.View;
 import android.widget.Toast;
 import android.widget.TextView;
 import android.view.View.OnClickListener;
-
+import android.util.Log;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -17,7 +17,7 @@ import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.common.api.GoogleApiClient;
 
 
-public class MainActivity extends Activity {
+public class MainActivity extends Activity implements AsyncResponse{
 
 
     Button get_button;
