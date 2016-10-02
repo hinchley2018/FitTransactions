@@ -89,14 +89,20 @@ public class MainActivity extends Activity implements AsyncResponse{
 
                       //create textviews and set their text values
                       TextView dateView = new TextView(getApplicationContext());
+                      dateView.setLayoutParams(new LayoutParams( LayoutParams.FILL_PARENT,LayoutParams.WRAP_CONTENT));
                       dateView.setText(purchase.getString("purchase_date"));
+
                       TextView desView=new TextView(getApplicationContext());
+                      desView.setLayoutParams(new LayoutParams( LayoutParams.FILL_PARENT,LayoutParams.WRAP_CONTENT));
                       desView.setText(purchase.getString("description"));
+
                       TextView amountView=new TextView(getApplicationContext());
                       amountView.setText(purchase.getString("amount"));
+                      amountView.setLayoutParams(new LayoutParams( LayoutParams.FILL_PARENT,LayoutParams.WRAP_CONTENT));
 
                       TextView hrView = new TextView(getApplicationContext());
-                      dateView.setText("100");
+                      hrView.setLayoutParams(new LayoutParams( LayoutParams.FILL_PARENT,LayoutParams.WRAP_CONTENT));
+                      hrView.setText("100");
 
                       //add them to table
                       tr.addView(dateView);
