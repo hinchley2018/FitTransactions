@@ -28,6 +28,7 @@ public class MainActivity extends Activity {
         setContentView(R.layout.activity_main);
         get_button = (Button) findViewById(R.id.Get_Button);
         Toast.makeText(this, "hello", Toast.LENGTH_LONG).show();
+        //hello
 
     }
 
