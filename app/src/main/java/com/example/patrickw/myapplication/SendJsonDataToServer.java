@@ -17,73 +17,66 @@ import java.net.URL;
 /**
  * Created by jhinchley on 5/5/16.
  */
-public class SendJsonDataToServer extends AsyncTask<String,Void,Void> {
+ public class SendJsonDataToServer extends AsyncTask<String , Void ,String> {
+     String server_response;
 
-    String server_response;
-    AsyncResponse delegate = null;
+     @Override
+     protected String doInBackground(String... strings) {
 
-    @Override
-    protected Void doInBackground(String... params) {
-        //variables to hold json response and data respectively
-        Log.d("doinBackground", "Got here!");
+         URL url;
+         HttpURLConnection urlConnection = null;
 
+         try {
+             url = new URL(strings[0]);
+             urlConnection = (HttpURLConnection) url.openConnection();
 
-        HttpURLConnection httpURLConnection = null;
-        BufferedReader bufferedReader = null;
-        try {
-            //create a url object
-            URL url = new URL("http://api.reimaginebanking.com/accounts?key=54765c95182641144b2d2606ac0f2b42");
+             int responseCode = urlConnection.getResponseCode();
 
-            //open a connection
-            httpURLConnection = (HttpURLConnection) url.openConnection();
-            Log.d("doinBackground", "opended connection");
-            //allow the connection to output
-            httpURLConnection.setDoOutput(true);
+             if(responseCode == HttpURLConnection.HTTP_OK){
+                 server_response = readStream(urlConnection.getInputStream());
+                 Log.v("CatalogClient", server_response);
+             }
 
-            //set the connection type
-            httpURLConnection.setRequestMethod("GET");
+         } catch (MalformedURLException e) {
+             e.printStackTrace();
+         } catch (IOException e) {
+             e.printStackTrace();
+         }
 
-            //set the headers
-            httpURLConnection.setRequestProperty("Content-Type", "application/json");
-            httpURLConnection.setRequestProperty("Accept", "application/json");
-            int responseCode = httpURLConnection.getResponseCode();
+         return null;
+     }
 
-            if (responseCode == HttpURLConnection.HTTP_OK) {
-                server_response = readStream(httpURLConnection.getInputStream());
-                Log.v("CatalogClient", server_response);
-            }
+     @Override
+     protected void onPostExecute(String s) {
+         super.onPostExecute(s);
 
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        return null;
+         Log.e("Response", "" + server_response);
 
 
-    }
+     }
+ }
 
-    private String readStream(InputStream in) {
-        BufferedReader reader = null;
-        StringBuffer response = new StringBuffer();
-        try {
-            reader = new BufferedReader(new InputStreamReader(in));
-            String line = "";
-            while ((line = reader.readLine()) != null) {
-                response.append(line);
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        } finally {
-            if (reader != null) {
-                try {
-                    reader.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-        return response.toString();
-    }
-}
+ // Converting InputStream to String
+
+ private String readStream(InputStream in) {
+         BufferedReader reader = null;
+         StringBuffer response = new StringBuffer();
+         try {
+             reader = new BufferedReader(new InputStreamReader(in));
+             String line = "";
+             while ((line = reader.readLine()) != null) {
+                 response.append(line);
+             }
+         } catch (IOException e) {
+             e.printStackTrace();
+         } finally {
+             if (reader != null) {
+                 try {
+                     reader.close();
+                 } catch (IOException e) {
+                     e.printStackTrace();
+                 }
+             }
+         }
+         return response.toString();
+     }
