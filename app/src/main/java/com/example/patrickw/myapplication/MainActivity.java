@@ -47,6 +47,8 @@ public class MainActivity extends Activity {
     private OnClickListener onClickListener = new OnClickListener() {
       @Override
       public void onClick(final View v) {
+          tv.setText("");
+      }
           
       }
 }
