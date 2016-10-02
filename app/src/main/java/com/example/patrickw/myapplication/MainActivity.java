@@ -67,8 +67,10 @@ public class MainActivity extends Activity implements AsyncResponse{
               } catch (InterruptedException e) {
                   e.printStackTrace();
               }
-              Toast.makeText(MainActivity.this,result, Toast.LENGTH_LONG).show();
+              //Toast.makeText(MainActivity.this,result, Toast.LENGTH_LONG).show();
               tv.setText(result);
+              JSONObject jsonObject=new JSONObject(result);
+              String purchase_date = jsonObject.getString("purchase_date");
           }
       }
 
