@@ -56,7 +56,7 @@ public class MainActivity extends Activity implements AsyncResponse{
       @Override
       public void onClick(final View v) {
           if (v == get_button){
-
+            send_data_to_server("hello");
               tv.setText("Goodbye!");
           }
       }
