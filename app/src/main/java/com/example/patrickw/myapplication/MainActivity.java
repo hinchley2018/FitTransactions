@@ -14,21 +14,21 @@ import com.google.android.gms.common.api.GoogleApiClient;
 public class MainActivity extends Activity {
 
 
-    /**
-     * ATTENTION: This was auto-generated to implement the App Indexing API.
-     * See https://g.co/AppIndexing/AndroidStudio for more information.
-     */
     Button get_button;
-
-
+    TextView tv;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        //set content to layout
         setContentView(R.layout.activity_main);
+
+        //get refs to elements
         get_button = (Button) findViewById(R.id.Get_Button);
-        Toast.makeText(this, "hello", Toast.LENGTH_LONG).show();
-        //hello
+        tv = (TextView) findViewById(R.id.Output_View);
+
+        //Toast.makeText(this, "hello", Toast.LENGTH_LONG).show();
 
     }
 
@@ -44,4 +44,9 @@ public class MainActivity extends Activity {
 
 
     }
+    private OnClickListener onClickListener = new OnClickListener() {
+      @Override
+      public void onClick(final View v) {
+          
+      }
 }
