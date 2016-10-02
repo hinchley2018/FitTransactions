@@ -44,10 +44,10 @@ public class SendJsonDataToServer extends AsyncTask<String,Void,Void> {
             //set the headers
             httpURLConnection.setRequestProperty("Content-Type","application/json");
             httpURLConnection.setRequestProperty("Accept","application/json");
-            int responseCode = urlConnection.getResponseCode();
+            int responseCode = httpURLConnection.getResponseCode();
 
             if(responseCode == HttpURLConnection.HTTP_OK){
-                server_response = readStream(urlConnection.getInputStream());
+                server_response = readStream(httpURLConnection.getInputStream());
                 Log.v("CatalogClient", server_response);
             }
 
