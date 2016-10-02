@@ -49,7 +49,7 @@ public  class SendJsonDataToServer extends AsyncTask<String,String,String> {
             Writer writer = new BufferedWriter(new OutputStreamWriter(httpURLConnection.getOutputStream(),"UTF-8"));
 
             //write data to output
-            writer.write(JsonDATA);
+            //writer.write(JsonDATA);
 
             //close output stream
             writer.close();
