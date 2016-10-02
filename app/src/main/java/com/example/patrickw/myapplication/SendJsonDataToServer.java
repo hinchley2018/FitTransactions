@@ -56,7 +56,7 @@ import java.net.URL;
      protected void onPostExecute(String s) {
          super.onPostExecute(s);
 
-         Log.e("Response", "" + server_response);
+         //Log.e("Response", "" + server_response);
          //backRef.result;
      }
 
