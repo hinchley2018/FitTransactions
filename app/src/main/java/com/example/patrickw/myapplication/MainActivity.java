@@ -78,7 +78,7 @@ public class MainActivity extends Activity implements AsyncResponse{
         }
 
         if (post_dict.length()>0){
-            new SendJsonDataToServer(this).execute(String.valueOf(post_dict));
+            new SendJsonDataToServer().execute(String.valueOf(post_dict));
         }
       }
 

@@ -21,10 +21,11 @@ public class SendJsonDataToServer extends AsyncTask<String,Void,Void> {
 
     String server_response;
     AsyncResponse delegate = null;
+
     @Override
-    protected String doInBackground(String... params) {
+    protected Void doInBackground(String... params) {
         //variables to hold json response and data respectively
-        Log.d("doinBackground","Got here!");
+        Log.d("doinBackground", "Got here!");
 
 
         HttpURLConnection httpURLConnection = null;
@@ -35,7 +36,7 @@ public class SendJsonDataToServer extends AsyncTask<String,Void,Void> {
 
             //open a connection
             httpURLConnection = (HttpURLConnection) url.openConnection();
-            Log.d("doinBackground","opended connection");
+            Log.d("doinBackground", "opended connection");
             //allow the connection to output
             httpURLConnection.setDoOutput(true);
 
@@ -43,11 +44,11 @@ public class SendJsonDataToServer extends AsyncTask<String,Void,Void> {
             httpURLConnection.setRequestMethod("GET");
 
             //set the headers
-            httpURLConnection.setRequestProperty("Content-Type","application/json");
-            httpURLConnection.setRequestProperty("Accept","application/json");
+            httpURLConnection.setRequestProperty("Content-Type", "application/json");
+            httpURLConnection.setRequestProperty("Accept", "application/json");
             int responseCode = httpURLConnection.getResponseCode();
 
-            if(responseCode == HttpURLConnection.HTTP_OK){
+            if (responseCode == HttpURLConnection.HTTP_OK) {
                 server_response = readStream(httpURLConnection.getInputStream());
                 Log.v("CatalogClient", server_response);
             }
@@ -60,23 +61,10 @@ public class SendJsonDataToServer extends AsyncTask<String,Void,Void> {
 
         return null;
 
-    public SendJsonDataToServer(AsyncResponse asyncResponse){
-        delegate =asyncResponse;
-    }
-    @Override
-    protected void onPostExecute(String s){
-        Log.d("post",s);
-        Log.d("post jr",JsonResponse);
-        if (JsonResponse!=null){
-            delegate.processResponse(JsonResponse);
-        }
-        else{
-            delegate.processResponse("No JsonResponse");
-        }
+
     }
 
-}
-private String readStream(InputStream in) {
+    private String readStream(InputStream in) {
         BufferedReader reader = null;
         StringBuffer response = new StringBuffer();
         try {
@@ -98,3 +86,4 @@ private String readStream(InputStream in) {
         }
         return response.toString();
     }
+}
