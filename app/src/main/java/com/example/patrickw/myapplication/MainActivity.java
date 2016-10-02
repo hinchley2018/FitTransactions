@@ -79,7 +79,7 @@ public class MainActivity extends Activity implements AsyncResponse{
 
         if (post_dict.length()>0){
             new SendJsonDataToServer().execute(String.valueOf(post_dict));
-        }
+        }//
       }
 
     @Override
