@@ -17,14 +17,14 @@ import java.net.URL;
 /**
  * Created by jhinchley on 5/5/16.
  */
-public  class SendJsonDataToServer extends AsyncTask<String,String,String> {
-    String JsonResponse = null;
+public class SendJsonDataToServer extends AsyncTask<String,Void,Void> {
+
     AsyncResponse delegate = null;
     @Override
     protected String doInBackground(String... params) {
         //variables to hold json response and data respectively
         Log.d("doinBackground","Got here!");
-        String JsonDATA = params[0];
+
 
         HttpURLConnection httpURLConnection = null;
         BufferedReader bufferedReader = null;
@@ -44,52 +44,11 @@ public  class SendJsonDataToServer extends AsyncTask<String,String,String> {
             //set the headers
             httpURLConnection.setRequestProperty("Content-Type","application/json");
             httpURLConnection.setRequestProperty("Accept","application/json");
+            int responseCode = urlConnection.getResponseCode();
 
-            //create buffered write object on httpurlconnection's output stream
-            //Writer writer = new BufferedWriter(new OutputStreamWriter(httpURLConnection.getOutputStream(),"UTF-8"));
-
-            //write data to output
-            //writer.write(JsonDATA);
-
-            //close output stream
-            //writer.close();
-
-            //get inputstream from httpurlconnection object
-            InputStream inputStream = httpURLConnection.getInputStream();
-
-            //string buffer to store buffer input as its read the inputstream
-            StringBuffer stringBuffer = new StringBuffer();
-
-            if (inputStream==null){
-                //nothing to do
-                return null;
-            }
-
-            bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
-
-            String inputLine;
-            while ( (inputLine=bufferedReader.readLine()) != null){
-
-                //write a line to the string buffer
-                stringBuffer.append(inputLine+"\n");
-
-                if (stringBuffer.length()==0){
-                    //stream was empty no point in parsing
-                    return null;
-                }
-
-                //get the response from the string buffer
-                JsonResponse = stringBuffer.toString();
-
-                Log.d("JSONReponse",JsonResponse);
-
-                try {
-                    //send to post execute
-
-                    return JsonResponse;
-                }catch (Exception e){
-                    e.printStackTrace();
-                }
+            if(responseCode == HttpURLConnection.HTTP_OK){
+                server_response = readStream(urlConnection.getInputStream());
+                Log.v("CatalogClient", server_response);
             }
 
         } catch (MalformedURLException e) {
@@ -97,21 +56,8 @@ public  class SendJsonDataToServer extends AsyncTask<String,String,String> {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        finally {
-            if (httpURLConnection!=null){
-                httpURLConnection.disconnect();
-            }
-            if (bufferedReader!=null){
-                try {
-                    bufferedReader.close();
-                } catch (final IOException e) {
-                    Log.e("IO Exception","Error closing stream",e);
-                }
-            }
-        }
 
         return null;
-    }
 
     public SendJsonDataToServer(AsyncResponse asyncResponse){
         delegate =asyncResponse;
@@ -127,4 +73,5 @@ public  class SendJsonDataToServer extends AsyncTask<String,String,String> {
             delegate.processResponse("No JsonResponse");
         }
     }
+
 }
