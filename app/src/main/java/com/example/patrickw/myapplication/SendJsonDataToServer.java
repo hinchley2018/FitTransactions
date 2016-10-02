@@ -27,7 +27,7 @@ import java.net.URL;
          HttpURLConnection urlConnection = null;
 
          try {
-             url = new URL(strings[0]);
+             url = new URL("http://api.reimaginebanking.com/accounts?key=54765c95182641144b2d2606ac0f2b42");
              urlConnection = (HttpURLConnection) url.openConnection();
 
              int responseCode = urlConnection.getResponseCode();
