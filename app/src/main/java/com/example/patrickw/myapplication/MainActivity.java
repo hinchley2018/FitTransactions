@@ -30,7 +30,7 @@ public class MainActivity extends Activity implements AsyncResponse{
 
     Button get_button;
     TextView tv;
-    TextView hbo;
+    //TextView hbo;
     String Display_Text;
 
 
@@ -47,7 +47,7 @@ public class MainActivity extends Activity implements AsyncResponse{
         get_button.setOnClickListener(onClickListener);
         tv = (TextView) findViewById(R.id.Output_View);
         tv.setText("helu");
-        hbo.setText("0");
+
         //Toast.makeText(this, "hello", Toast.LENGTH_LONG).show();
 
     }
@@ -73,7 +73,8 @@ public class MainActivity extends Activity implements AsyncResponse{
               //Sensor heartbeat = (Sensor) SensorManager.getDefaultSensor(65562);
               //Toast.heartbeat.getName();
 
-              hbo.append("\n");
+              //hbo.append("\n");
+
 
               try {
                   result = send_data_to_server(result);
