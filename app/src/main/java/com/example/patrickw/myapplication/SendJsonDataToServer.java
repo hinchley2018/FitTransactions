@@ -17,7 +17,7 @@ import java.net.URL;
 /**
  * Created by jhinchley on 5/5/16.
  */
- public class SendJsonDataToServer extends AsyncTask<String , Void ,String> {
+ public class SendJsonDataToServer extends AsyncTask<String , String ,String> {
      String server_response;
 
      @Override
@@ -35,6 +35,7 @@ import java.net.URL;
              if(responseCode == HttpURLConnection.HTTP_OK){
                  server_response = readStream(urlConnection.getInputStream());
                  Log.v("CatalogClient", server_response);
+                 return server_response;
              }
 
          } catch (MalformedURLException e) {
