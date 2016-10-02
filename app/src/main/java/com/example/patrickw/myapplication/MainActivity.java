@@ -66,8 +66,8 @@ public class MainActivity extends Activity implements AsyncResponse{
       public void send_data_to_server(){
 
 
-            new SendJsonDataToServer().execute();
-
+            String resul =new SendJsonDataToServer().execute().get();
+            Log.d("Finally",resul);
 
       }
 
