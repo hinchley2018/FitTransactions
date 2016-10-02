@@ -81,4 +81,9 @@ public class MainActivity extends Activity implements AsyncResponse{
             new SendJsonDataToServer(this).execute(String.valueOf(post_dict));
         }
       }
+
+    @Override
+    public void processResponse(String output) {
+
+    }
 }

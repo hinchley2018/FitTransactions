@@ -19,6 +19,7 @@ import java.net.URL;
  */
 public class SendJsonDataToServer extends AsyncTask<String,Void,Void> {
 
+    String server_response;
     AsyncResponse delegate = null;
     @Override
     protected String doInBackground(String... params) {
