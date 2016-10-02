@@ -19,6 +19,11 @@ import java.net.URL;
  */
  public class SendJsonDataToServer extends AsyncTask<String , String ,String> {
      String server_response;
+    MainActivity backRef;
+
+    public SendJsonDataToServer(MainActivity backref){
+        backRef=backref;
+    }
 
      @Override
      protected String doInBackground(String... strings) {
@@ -52,7 +57,7 @@ import java.net.URL;
          super.onPostExecute(s);
 
          Log.e("Response", "" + server_response);
-         
+         //backRef.result;
      }
 
 

@@ -16,6 +16,8 @@ import com.google.android.gms.appindexing.Action;
 import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.common.api.GoogleApiClient;
 
+import java.util.concurrent.ExecutionException;
+
 
 public class MainActivity extends Activity implements AsyncResponse{
 
@@ -57,24 +59,26 @@ public class MainActivity extends Activity implements AsyncResponse{
       @Override
       public void onClick(final View v) {
           if (v == get_button){
-            send_data_to_server();
-              tv.setText(s);
+              String result = "";
+              try {
+                  result = send_data_to_server(result);
+              } catch (ExecutionException e) {
+                  e.printStackTrace();
+              } catch (InterruptedException e) {
+                  e.printStackTrace();
+              }
+              Toast.makeText(MainActivity.this,result, Toast.LENGTH_LONG).show();
+              tv.setText(result);
           }
       }
 
       };
-      public void send_data_to_server(){
-
-
-            String resul =new SendJsonDataToServer().execute().get();
-            Log.d("Finally",resul);
+      public String send_data_to_server(String re) throws ExecutionException, InterruptedException {
+            re =new SendJsonDataToServer(this).execute().get();
+            Log.d("Finally",re);
+            return re;
 
       }
-
-    public void set_TV(String s)
-    {
-       Display_Text = s;
-    }
 
     @Override
     public void processResponse(String output) {
