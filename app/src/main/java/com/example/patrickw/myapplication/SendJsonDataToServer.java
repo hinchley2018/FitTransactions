@@ -46,13 +46,13 @@ public  class SendJsonDataToServer extends AsyncTask<String,String,String> {
             httpURLConnection.setRequestProperty("Accept","application/json");
 
             //create buffered write object on httpurlconnection's output stream
-            Writer writer = new BufferedWriter(new OutputStreamWriter(httpURLConnection.getOutputStream(),"UTF-8"));
+            //Writer writer = new BufferedWriter(new OutputStreamWriter(httpURLConnection.getOutputStream(),"UTF-8"));
 
             //write data to output
             //writer.write(JsonDATA);
 
             //close output stream
-            writer.close();
+            //writer.close();
 
             //get inputstream from httpurlconnection object
             InputStream inputStream = httpURLConnection.getInputStream();
