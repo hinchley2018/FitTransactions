@@ -53,7 +53,6 @@ import java.net.URL;
 
          Log.e("Response", "" + server_response);
 
-
      }
 
 

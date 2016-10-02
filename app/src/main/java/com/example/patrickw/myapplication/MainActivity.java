@@ -22,6 +22,7 @@ public class MainActivity extends Activity implements AsyncResponse{
 
     Button get_button;
     TextView tv;
+    String Display_Text;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,7 +58,7 @@ public class MainActivity extends Activity implements AsyncResponse{
       public void onClick(final View v) {
           if (v == get_button){
             send_data_to_server();
-              tv.setText("Goodbye!");
+              tv.setText(s);
           }
       }
 
@@ -67,7 +68,13 @@ public class MainActivity extends Activity implements AsyncResponse{
 
             new SendJsonDataToServer().execute();
 
+
       }
+
+    public void set_TV(String s)
+    {
+       Display_Text = s;
+    }
 
     @Override
     public void processResponse(String output) {
