@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 import android.widget.TextView;
+import android.view.View.OnClickListener;
 
 import com.google.android.gms.appindexing.Action;
 import com.google.android.gms.appindexing.AppIndex;
@@ -23,13 +24,15 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+
         //set content to layout
         setContentView(R.layout.activity_main);
 
         //get refs to elements
         get_button = (Button) findViewById(R.id.Get_Button);
+        get_button.setOnClickListener(onClickListener);
         tv = (TextView) findViewById(R.id.Output_View);
-
+        tv.setText("helu");
         //Toast.makeText(this, "hello", Toast.LENGTH_LONG).show();
 
     }
@@ -49,8 +52,11 @@ public class MainActivity extends Activity {
     private OnClickListener onClickListener = new OnClickListener() {
       @Override
       public void onClick(final View v) {
-          tv.setText("");
+          if (v == get_button){
+
+              tv.setText("Goodbye!");
+          }
       }
 
-      }
+      };
 }
